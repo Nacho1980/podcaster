@@ -12,3 +12,13 @@ npm run dev
 npm run build
 npm run preview
 ```
+
+## Run the tests (unit tests and E2E tests):
+
+```sh
+npm test
+```
+
+```sh
+npx cypress open
+```

@@ -6,3 +6,4 @@ export const PODCAST_DETAILS_URL =
   "https://itunes.apple.com/lookup?id={podcastId}&country=US&media=podcast&entity=podcastEpisode&limit=100";
 export const TOP_PODCASTS_LOCAL_STORAGE_KEY = "topPodcasts";
 export const PODCAST_DETAILS_LOCAL_STORAGE_KEY = "topPodcasts";
+export const CACHE_EXPIRES_MS = 24 * 60 * 60 * 1000; //1 day in millisecs

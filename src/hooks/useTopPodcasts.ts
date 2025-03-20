@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   ALL_ORIGINS_PROXY,
+  CACHE_EXPIRES_MS,
   TOP_PODCASTS_LOCAL_STORAGE_KEY,
   TOP_PODCASTS_URL,
 } from "../constants";
@@ -18,10 +19,9 @@ const fetchTopPodcasts = async (): Promise<Podcast[]> => {
   if (cachedData) {
     const { data, timestamp } = JSON.parse(cachedData);
     const now = new Date().getTime();
-    const oneDayMs = 24 * 60 * 60 * 1000; // 1 day in milliseconds
 
     // Use data in cache if they are less than one day all
-    if (now - timestamp < oneDayMs) {
+    if (now - timestamp < CACHE_EXPIRES_MS) {
       console.log("Using cached data");
       return data;
     }

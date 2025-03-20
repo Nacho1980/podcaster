@@ -15,7 +15,6 @@ const Filter = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setFilterText(e.target.value));
-    console.log("Filter: " + e.target.value); // Logs text on each key press
   };
   return (
     <div className="flex justify-end p-4 gap-2">

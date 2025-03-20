@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import {
+  CACHE_EXPIRES_MS,
   PODCAST_DETAILS_LOCAL_STORAGE_KEY,
   PODCAST_DETAILS_URL,
   PROXY2,
 } from "../constants";
 import { Episode } from "../types/Episode";
 import { Podcast } from "../types/Podcast";
+import { dateISOToDDMMYYYY, timeMillisToHHmmSS } from "../utils/DateTimeUtils";
+import { getFirstTagContentFromUrl } from "../utils/RSSUtils";
 
 const parseEpisodes = (responseObj: any): Episode[] => {
   const episodes = [];
@@ -13,21 +16,13 @@ const parseEpisodes = (responseObj: any): Episode[] => {
   // Skip the first result (index 0) as it's the podcast info
   for (let i = 1; i < responseObj.results.length; i++) {
     const episode = responseObj.results[i];
-    const episodeDate = new Date(episode.releaseDate);
+    const episodeDate = dateISOToDDMMYYYY(episode.releaseDate);
 
     episodes.push({
       id: episode.trackId,
       title: episode.trackName,
-      date:
-        episodeDate.getDate() +
-        "/" +
-        episodeDate.getMonth() +
-        "/" +
-        episodeDate.getFullYear(),
-      duration:
-        Math.round(episode.trackTimeMillis / 1000 / 60) +
-        ":" +
-        Math.round((episode.trackTimeMillis / 1000) % 60), // Convert to seconds
+      date: episodeDate,
+      duration: timeMillisToHHmmSS(episode.trackTimeMillis),
       description: episode.description,
       url: episode.episodeUrl,
     });
@@ -50,10 +45,9 @@ const fetchPodcastDetails = async (podcastId: string): Promise<Podcast> => {
   if (cachedData) {
     const { data, timestamp } = JSON.parse(cachedData);
     const now = new Date().getTime();
-    const oneDayMs = 24 * 60 * 60 * 1000; // 1 day in milliseconds
 
     // Use data in cache if they are less than one day all
-    if (now - timestamp < oneDayMs) {
+    if (now - timestamp < CACHE_EXPIRES_MS) {
       console.log("Using cached data");
       return data;
     }
@@ -82,7 +76,9 @@ const fetchPodcastDetails = async (podcastId: string): Promise<Podcast> => {
       author: podcastData.artistName,
       imageUrl: podcastData.artworkUrl600,
       episodes: episodes,
-      description: podcastData.collectionName,
+      description:
+        (await getFirstTagContentFromUrl(podcastData.feedUrl, "description")) ??
+        podcastData.collectionName,
     };
 
     // Store in localStorage together with the timestamp
