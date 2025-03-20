@@ -26,31 +26,22 @@ const PodcastDetail = () => {
   useEffect(() => {
     dispatch(setLoading(loading));
   }, [loading]);
-  if (!selectedPodcast) {
-    return (
-      <div>ERROR: No podcast selected, could not display podcast details</div>
-    );
-  }
 
-  if (selectedPodcast) {
-    if (error) {
-      return <div>Error loading podcast detail</div>;
-    }
-    return (
-      <div className="flex flex-col w-full">
-        <Header />
-        <div className="flex w-full">
-          {podcast && (
-            <div className="flex gap-8">
-              <PodcastSidebar podcast={podcast} />
-              <EpisodeList episodes={podcast.episodes} />
-            </div>
-          )}
-          {!selectedPodcast && <div>ERROR: No podcast selected</div>}
-        </div>
+  return (
+    <div className="flex flex-col w-full">
+      <Header />
+      <div className="flex w-full">
+        {!error && podcast && (
+          <div className="flex gap-8">
+            <PodcastSidebar podcast={podcast} />
+            <EpisodeList episodes={podcast.episodes} />
+          </div>
+        )}
+        {!error && !selectedPodcast && <div>ERROR: No podcast selected</div>}
+        {error && <div>ERROR: Could not fetch podcast detail</div>}
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default PodcastDetail;
