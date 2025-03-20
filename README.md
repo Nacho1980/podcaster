@@ -1,5 +1,9 @@
 # Podcaster /// Implemented with React + Redux + TypeScript + Vite + Tailwindcss
 
+## Deployed and ready to use!
+
+https://podcaster-ten-rosy.vercel.app/
+
 ## Run in development mode:
 
 ```sh
