@@ -1,4 +1,4 @@
-# Podcaster /// Implemented with React + Redux + TypeScript + Vite + Tailwindcss
+# Podcaster /// Implemented with React + Redux + TypeScript + Vite + Tailwindcss + Jest + Cypress
 
 ## Deployed and ready to use!
 
