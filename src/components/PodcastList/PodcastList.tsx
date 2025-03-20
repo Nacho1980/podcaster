@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useTopPodcasts } from "../hooks/useTopPodcasts";
-import { setLoading } from "../reducers/podcastReducer";
-import { RootState } from "../store/store";
-import { Podcast } from "../types/Podcast";
-import PodcastCard from "./PodcastCard";
+import { useTopPodcasts } from "../../hooks/useTopPodcasts";
+import { setLoading } from "../../reducers/podcastReducer";
+import { RootState } from "../../store/store";
+import { Podcast } from "../../types/Podcast";
+import PodcastCard from "../PostcardCard/PodcastCard";
 
 /**
  * PodcastList component
@@ -24,12 +24,16 @@ const PodcastList = () => {
 
   const filteredPodcasts =
     filterText && filterText.length > 0
-      ? podcasts.filter(
-          (pod: Podcast) =>
-            pod.title.includes(filterText) || pod.author.includes(filterText)
-        )
+      ? podcasts.filter((pod: Podcast) => {
+          const lowerFilterText = filterText.toLowerCase();
+          const lowerTitle = pod.title.toLowerCase();
+          const lowerAuthor = pod.author.toLowerCase();
+          return (
+            lowerTitle.includes(lowerFilterText) ||
+            lowerAuthor.includes(lowerFilterText)
+          );
+        })
       : podcasts;
-
   return (
     <div className="p-4">
       <div className="grid grid-cols-4 gap-4">

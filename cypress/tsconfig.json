@@ -1,0 +1,9 @@
+// cypress/tsconfig.json
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "types": ["cypress"]
+  },
+  "include": ["../cypress/**/*.ts"]
+}

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Podcast } from "../types/Podcast";
+import { Podcast } from "../../types/Podcast";
 
 /**
  * PodcastSidebar component
@@ -19,6 +19,7 @@ const PodcastSidebar = ({ podcast }: { podcast: Podcast }) => {
     <div
       className="flex flex-col cursor-pointer gap-2 pt-2 pl-2 pr-2 pb-3 ml-4 mt-4 flex-shrink-0 h-fit w-1/4"
       onClick={handleClick}
+      data-testid="podcast-sidebar"
       style={{
         boxShadow:
           "-4px 4px 6px rgba(0, 0, 0, 0.1), 4px 4px 6px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1)",

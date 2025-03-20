@@ -1,6 +1,6 @@
-import Filter from "../components/Filter";
-import Header from "../components/Header";
-import PodcastList from "../components/PodcastList";
+import Filter from "../components/Filter/Filter";
+import Header from "../components/Header/Header";
+import PodcastList from "../components/PodcastList/PodcastList";
 
 /**
  * Home page

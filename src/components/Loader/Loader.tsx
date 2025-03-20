@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { RootState } from "../store/store";
+import { RootState } from "../../store/store";
 
 /**
  * Loader component
@@ -11,8 +11,11 @@ const Loader = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center">
-        <div className="w-5 h-5 bg-blue-500 rounded-full animate-ping"></div>
+      <div className="flex justify-center items-center" data-testid="loader">
+        <div
+          role="status"
+          className="w-5 h-5 bg-blue-500 rounded-full animate-ping"
+        ></div>
       </div>
     );
   }

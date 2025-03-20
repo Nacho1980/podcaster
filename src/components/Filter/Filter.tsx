@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setFilterText } from "../reducers/podcastReducer";
-import { RootState } from "../store/store";
+import { setFilterText } from "../../reducers/podcastReducer";
+import { RootState } from "../../store/store";
 
 /**
  * Filter component
@@ -27,6 +27,7 @@ const Filter = () => {
       <div className="flex flex-col items-center gap-4">
         <input
           type="text"
+          data-testid="filter-input"
           value={filterText}
           onChange={handleChange}
           className="border border-gray-400 rounded-lg p-2 w-64 focus:outline-none h-full"

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import EpisodePlayer from "../components/EpisodePlayer";
-import Header from "../components/Header";
-import PodcastSidebar from "../components/PodcastSidebar";
+import EpisodePlayer from "../components/EpisodePlayer/EpisodePlayer";
+import Header from "../components/Header/Header";
+import PodcastSidebar from "../components/PodcastSidebar/PodcastSidebar";
 import { RootState } from "../store/store";
 import { Episode } from "../types/Episode";
 import { Podcast } from "../types/Podcast";

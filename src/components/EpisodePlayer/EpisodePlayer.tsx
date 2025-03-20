@@ -1,4 +1,4 @@
-import { Episode } from "../types/Episode";
+import { Episode } from "../../types/Episode";
 
 /**
  * Episode player component
@@ -10,6 +10,7 @@ const EpisodePlayer = ({ episode }: { episode: Episode }) => {
   return (
     <div
       className="flex flex-col w-full drop-shadow-lg p-4 mt-4 mr-4"
+      data-testid="episode-player"
       style={{
         boxShadow:
           "-4px 4px 6px rgba(0, 0, 0, 0.1), 4px 4px 6px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1)",
@@ -21,7 +22,12 @@ const EpisodePlayer = ({ episode }: { episode: Episode }) => {
         dangerouslySetInnerHTML={{ __html: episode.description }}
       />
       <div className="mt-4 w-full">
-        <audio className="w-full" src={episode.url} controls></audio>
+        <audio
+          data-testid="audio-player"
+          className="w-full"
+          src={episode.url}
+          controls
+        ></audio>
       </div>
     </div>
   );

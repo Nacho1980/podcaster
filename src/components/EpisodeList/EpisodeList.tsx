@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { selectEpisode } from "../reducers/podcastReducer";
-import { RootState } from "../store/store";
-import { Episode } from "../types/Episode";
+import { selectEpisode } from "../../reducers/podcastReducer";
+import { RootState } from "../../store/store";
+import { Episode } from "../../types/Episode";
 
 /**
  * Episode list component
@@ -36,6 +36,7 @@ const EpisodeList = ({ episodes }: { episodes: Episode[] }) => {
       </div>
       <div
         className="mt-2 w-full"
+        data-testid="episode-list"
         style={{
           boxShadow:
             "-4px 4px 6px rgba(0, 0, 0, 0.1), 4px 4px 6px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1)",
@@ -52,6 +53,7 @@ const EpisodeList = ({ episodes }: { episodes: Episode[] }) => {
         {episodes.map((episode, index) => (
           <div
             key={episode.id}
+            data-testid="episode-list-item"
             className={`grid grid-cols-10 p-3 border-b border-gray-200 ${
               index % 2 !== 0 ? "bg-gray-100" : ""
             }`}

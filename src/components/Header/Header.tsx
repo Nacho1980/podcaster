@@ -1,7 +1,10 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { deselectEpisode, deselectPodcast } from "../reducers/podcastReducer";
-import Loader from "./Loader";
+import {
+  deselectEpisode,
+  deselectPodcast,
+} from "../../reducers/podcastReducer";
+import Loader from "../Loader/Loader";
 
 /**
  * Header component
@@ -17,7 +20,12 @@ const Header = () => {
   };
   return (
     <div className="flex justify-between items-center p-4 border-b border-gray-200">
-      <Link to="/" onClick={handleClick} className="text-blue-500 font-bold">
+      <Link
+        to="/"
+        onClick={handleClick}
+        className="text-blue-500 font-bold"
+        data-testid="header-title"
+      >
         Podcaster
       </Link>
       <Loader />

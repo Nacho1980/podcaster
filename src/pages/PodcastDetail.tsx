@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import EpisodeList from "../components/EpisodeList";
-import Header from "../components/Header";
-import PodcastSidebar from "../components/PodcastSidebar";
+import EpisodeList from "../components/EpisodeList/EpisodeList";
+import Header from "../components/Header/Header";
+import PodcastSidebar from "../components/PodcastSidebar/PodcastSidebar";
 import { usePodcastDetails } from "../hooks/usePodcastDetails";
 import { setLoading } from "../reducers/podcastReducer";
 import { RootState } from "../store/store";
@@ -20,15 +20,17 @@ const PodcastDetail = () => {
   const selectedPodcast: Podcast | null = useSelector(
     (state: RootState) => state.podcasts.selectedPodcast
   );
+  const { podcast, loading, error } = usePodcastDetails(
+    selectedPodcast?.id || ""
+  );
+  useEffect(() => {
+    dispatch(setLoading(loading));
+  }, [loading]);
   if (!selectedPodcast) {
     return (
       <div>ERROR: No podcast selected, could not display podcast details</div>
     );
   }
-  const { podcast, loading, error } = usePodcastDetails(selectedPodcast?.id);
-  useEffect(() => {
-    dispatch(setLoading(loading));
-  }, [loading]);
 
   if (selectedPodcast) {
     if (error) {

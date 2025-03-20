@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { selectPodcast } from "../reducers/podcastReducer";
-import { Podcast } from "../types/Podcast";
+import { selectPodcast } from "../../reducers/podcastReducer";
+import { Podcast } from "../../types/Podcast";
 
 /**
  * PodcastCard component
@@ -22,6 +22,7 @@ const PodcastCard = ({ podcast }: { podcast: Podcast }) => {
   return (
     <div
       key={podcast.id}
+      data-testid="podcast-card"
       onClick={handleClick}
       className="relative flex flex-col gap-2 text-center pt-12 pl-2 pr-2 pb-2 mt-12 cursor-pointer"
       style={{
@@ -36,8 +37,12 @@ const PodcastCard = ({ podcast }: { podcast: Podcast }) => {
           className="w-20 h-20 rounded-full object-cover"
         />
       </div>
-      <div className="uppercase font-bold text-sm">{podcast.title}</div>
-      <div className="text-sm">Author: {podcast.author}</div>
+      <div data-testid="podcast-title" className="uppercase font-bold text-sm">
+        {podcast.title}
+      </div>
+      <div data-testid="podcast-author" className="text-sm">
+        Author: {podcast.author}
+      </div>
     </div>
   );
 };
