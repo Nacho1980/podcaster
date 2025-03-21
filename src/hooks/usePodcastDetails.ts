@@ -10,6 +10,12 @@ import { Podcast } from "../types/Podcast";
 import { dateISOToDDMMYYYY, timeMillisToHHmmSS } from "../utils/DateTimeUtils";
 import { getFirstTagContentFromUrl } from "../utils/RSSUtils";
 
+/**
+ * usePodcastDetails hook
+ *
+ * A hook to fetch most details for the selected podcast
+ */
+// Retrieve the information fetched from the service and parse to episode objects
 const parseEpisodes = (responseObj: any): Episode[] => {
   const episodes = [];
 
@@ -31,11 +37,7 @@ const parseEpisodes = (responseObj: any): Episode[] => {
   return episodes;
 };
 
-/**
- * usePodcastDetails hook
- *
- * A hook to fetch most details for the selected podcast
- */
+// Retrieve the info for podcasts either from cache (if available) or iTunes endpoint
 const fetchPodcastDetails = async (podcastId: string): Promise<Podcast> => {
   // Verify the existance of data in cache
   const cachedData = localStorage.getItem(

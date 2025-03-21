@@ -24,7 +24,7 @@ const EpisodeDetail = () => {
   return (
     <div className="flex flex-col w-full">
       <Header />
-      <div className="flex w-full w-screen gap-8">
+      <div className="flex w-full h-full w-screen gap-8">
         {selectedPodcast && selectedEpisode && (
           <>
             <PodcastSidebar podcast={selectedPodcast} />
@@ -32,7 +32,9 @@ const EpisodeDetail = () => {
           </>
         )}
         {(!selectedPodcast || !selectedEpisode) && (
-          <div>ERROR: No podcast/episode selected</div>
+          <div className="flex justify-center items-center font-bold w-full text-center mt-8">
+            ERROR: No podcast/episode selected
+          </div>
         )}
       </div>
     </div>

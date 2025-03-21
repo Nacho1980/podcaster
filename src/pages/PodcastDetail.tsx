@@ -37,8 +37,16 @@ const PodcastDetail = () => {
             <EpisodeList episodes={podcast.episodes} />
           </div>
         )}
-        {!error && !selectedPodcast && <div>ERROR: No podcast selected</div>}
-        {error && <div>ERROR: Could not fetch podcast detail</div>}
+        {!error && !selectedPodcast && (
+          <div className="flex justify-center items-center font-bold w-full text-center mt-8">
+            ERROR: No podcast selected
+          </div>
+        )}
+        {error && (
+          <div className="flex justify-center items-center font-bold w-full text-center mt-8">
+            ERROR: Could not fetch podcast detail
+          </div>
+        )}
       </div>
     </div>
   );
