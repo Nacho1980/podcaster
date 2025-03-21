@@ -3,7 +3,6 @@ import {
   CACHE_EXPIRES_MS,
   PODCAST_DETAILS_LOCAL_STORAGE_KEY,
   PODCAST_DETAILS_URL,
-  PROXY2,
 } from "../constants";
 import { Episode } from "../types/Episode";
 import { Podcast } from "../types/Podcast";
@@ -60,7 +59,8 @@ const fetchPodcastDetails = async (podcastId: string): Promise<Podcast> => {
   try {
     const url =
       //ALL_ORIGINS_PROXY + //Problematic with details
-      PROXY2 + PODCAST_DETAILS_URL.replace("{podcastId}", podcastId);
+      //PROXY2 +
+      PODCAST_DETAILS_URL.replace("{podcastId}", podcastId);
     const response = await fetch(url);
 
     if (!response.ok) {
