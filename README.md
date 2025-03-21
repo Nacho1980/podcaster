@@ -3,7 +3,6 @@
 ## Deployed and ready to use!
 
 https://podcaster-ten-rosy.vercel.app/
-Disclaimer: proxy not working in Vercel for podcast details but it works when running in dev mode
 
 ## Run in development mode:
 
